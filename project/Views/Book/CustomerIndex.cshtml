@@ -1,0 +1,35 @@
+﻿@model List<Book>
+@if (TempData["Message"] != null)
+{
+    <h5 class="alert alert-info">@TempData["Message"]</h5>
+}
+
+@if (TempData["Message"] == null && Model.Count == 0)
+{
+    <h2 class="alert alert-danger">No book in DB. Add book first !</h2>
+}
+else
+{
+    <div class="container">
+        <div class="p-2 pt-md-5 pb-md-3 mx-auto">
+            <h1 class="display-5 font-weight-bold title-font">~All Products~</h1>
+        </div>
+        <form method="post" asp-controller="Book" asp-action="CustomerSearch">
+            <input class="form-control" type="search" placeholder="Search" name="keyword" required>
+        </form>
+        <div class="row row-cols-4">
+            @foreach (var book in Model)
+           {
+                <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); margin: auto; text-align: center; font-family: arial; height: 300px; width: 200px; margin-top: 20px;">
+                    <a asp-controller="Book" asp-action="CustomerDetail" asp-route-id="@book.Id" style="text-align: center">
+                        <img src="@book.Image" style="max-width: 150px; max-height: 150px"/>
+                   </a>
+                   <h6 style="text-align: center">@book.Name</h6>
+                   <p style="text-align: center">@book.Price $</p>
+
+               </div>
+           }
+        </div>
+    </div>
+}
+

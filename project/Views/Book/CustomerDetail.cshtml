@@ -1,0 +1,47 @@
+﻿@model project.Models.Book
+
+<div class="row text-center">
+    <div class="col">
+        <img src="@Model.Image" width="300" height="300">
+    </div>
+    <div class="col">
+        <table class="table table-bordered">
+            <tr>
+                <th>Name</th>
+                <th colspan="2">@Model.Name</th>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <th>$ @Model.Price </th>
+
+                
+
+                
+            </tr>
+            <tr>
+                <th>Stock</th>
+                <th>@Model.Stock</th>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td>
+                    <a class="btn btn-outline-success" asp-controller="Category" asp-action="CustomerDetail"
+                       asp-route-id="@Model.Category.Id">
+                        @Model.Category.Name
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <th>@Model.Description</th>
+            </tr>
+        </table>
+        <form method="post" class="form-check" asp-controller="Order" asp-action="MakeOrder">
+            <input type="hidden" name="name" value="@User.Identity.Name" />
+            <input type="hidden" name="book" value="@Model.Id">
+            <input type="number" name="stock" min="1" max="@Model.Stock">
+            <input type="hidden" name="price" value="@Model.Price"><br>
+            <input type="submit" class="btn btn-info" value="Order">
+        </form>
+    </div>
+</div>

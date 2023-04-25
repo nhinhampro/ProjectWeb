@@ -1,0 +1,43 @@
+﻿
+    <div class="container">
+        <table class="table table-bordered text-center">
+            <tr>
+                <th>Email Customer</th>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Menu</th>
+            </tr>
+
+            @foreach (var account in Model)
+            {
+                <tr>
+                    <td>@account.Id</td>
+                    <td>@account.Email</td>
+                    <td>@account.PhoneNumber</td>
+
+              
+                    <td>
+
+
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+
+                            <a class="btn btn-success">
+                                Reset
+                            </a>
+                            <a class="btn btn-danger" asp-controller="Account" asp-action="Remove" asp-route-id="@account.Id">
+                                Delete
+                            </a>
+
+                        }
+                    </td>
+
+                </tr>
+
+            }
+        </table>
+    </div>
+

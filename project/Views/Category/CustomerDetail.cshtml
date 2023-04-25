@@ -1,0 +1,20 @@
+﻿@model project.Models.Category
+
+<div class="container">
+    <div class="p-2 pt-md-5 pb-md-3 mx-auto">
+        <h2 class="text text-success mt-3">@Model.Name</h2>
+    </div>
+    <div class="row row-cols-4">
+        @foreach (var book in Model.Books)
+        {
+            <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); margin: auto; text-align: center; font-family: arial; height: 300px; width: 200px; margin-top: 20px;">
+                <a asp-controller="Book" asp-action="CustomerDetail" asp-route-id="@book.Id" style="text-align: center">
+                    <img src="@book.Image" style="max-width: 150px; max-height=150px" />
+                </a>
+                <h6 style="text-align: center">@book.Name</h6>
+                <p style="text-align: center">@book.Price $</p>
+
+            </div>
+        }
+    </div>
+</div>

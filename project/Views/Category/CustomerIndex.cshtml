@@ -1,0 +1,17 @@
+﻿@model List<Category>
+<div class="container">
+    <div class="p-2 pt-md-5 pb-md-3 mx-auto">
+        <h1 class="display-5 font-weight-bold title-font">~Category~</h1>
+    </div>
+    <div class="row row-cols-4">
+        @foreach (var cate in Model)
+        {
+            <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); margin: auto; text-align: center; font-family: arial; height: 150px; width: 200px; margin-top: 20px;">
+                <h3 class="font-weight-bold" style="text-align: center; margin-top: 20px">@cate.Name</h3>
+                <a asp-controller="Category" asp-action="CustomerDetail" class="btn btn-info" asp-route-id="@cate.Id" style="text-align: center">
+                    Detail
+                </a>
+            </div>
+        }
+    </div>
+</div>
